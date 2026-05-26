@@ -1,4 +1,4 @@
-# Reading Manager
+# Ma liste de lectures
 
 Un plugin Obsidian + une extension Firefox pour capturer et organiser vos lectures sans friction.
 
@@ -10,10 +10,11 @@ Firefox (URL) → Extension → HTTP local → Plugin Obsidian → Note Markdown
 
 ## Screenshots
 
-<img width="536" height="617" alt="image" src="https://github.com/user-attachments/assets/28234d40-1ae2-4289-86e5-fde1cbd47bb5" />
+Depuis le navigateur.
+<img width="1918" height="839" alt="image" src="https://github.com/user-attachments/assets/4b49f0fd-0e45-4d01-85cc-61b1c0d7212a" />
 
 ---
-
+Note créée éditable
 <img width="983" height="765" alt="image" src="https://github.com/user-attachments/assets/2338eac2-01cd-4f7e-bc61-4ddeab17bd41" />
 
 ## Ce que ça fait
