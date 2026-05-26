@@ -1,18 +1,72 @@
 # Reading Manager
 
-Un système de gestion de lecture en deux parties : un plugin Obsidian pour stocker et enrichir vos entrées, et une extension Firefox pour capturer des URLs en un clic.
+Un plugin Obsidian + une extension Firefox pour capturer et organiser vos lectures sans friction.
+
+```
+Firefox (URL) → Extension → HTTP local → Plugin Obsidian → Note Markdown
+```
 
 ---
 
-## Architecture
+## Ce que ça fait
+
+- Cliquer sur l'icône dans Firefox envoie l'URL courante dans votre vault
+- Les métadonnées (titre, auteur, date) sont récupérées automatiquement
+- Tout reste local — pas de compte, pas de cloud
+
+---
+
+## Installation
+
+### 1. Plugin Obsidian
+
+> Le plugin doit tourner en permanence pour recevoir les URLs depuis Firefox.
+
+```bash
+git clone https://github.com/ton-user/reading-manager
+```
+
+Copier le dossier `obsidian-plugin/` dans :
+
+```
+<votre-vault>/.obsidian/plugins/reading-manager/
+```
+
+Puis dans Obsidian :
+**Paramètres → Plugins communautaires → Activer Reading Manager**
+
+---
+
+### 2. Extension Firefox
+
+Télécharger le `.xpi` depuis la page [Releases](../../releases).
+
+Dans Firefox :
+**`about:addons` → ⚙️ → Installer depuis un fichier → sélectionner le `.xpi`**
+
+> L'extension n'est pas encore signée AMO. Firefox peut afficher un avertissement — c'est normal, vous pouvez continuer.
+
+---
+
+### 3. Vérifier que ça fonctionne
+
+1. Ouvrir n'importe quelle page dans Firefox
+2. Cliquer sur l'icône Reading Manager
+3. La note apparaît dans votre vault dans les secondes qui suivent
+
+Si rien ne se passe, vérifier que le plugin Obsidian est bien actif — c'est la cause numéro un.
+
+---
+
+## Structure du projet
 
 ```
 reading-manager/
-├── obsidian-plugin/          # Plugin Obsidian
+├── obsidian-plugin/
 │   ├── main.js
 │   ├── manifest.json
 │   └── styles.css
-└── firefox-extension/        # Extension Firefox
+└── firefox-extension/
     ├── manifest.json
     ├── popup.html
     ├── popup.js
@@ -23,72 +77,25 @@ reading-manager/
 
 ---
 
-## Plugin Obsidian
+## FAQ
 
-### Fonctionnalités
-- Ajout d'entrées de lecture (articles, vidéos, livres, publications)
-- Enrichissement automatique de métadonnées via OpenGraph / oEmbed
-- Intégration Zotero
-- Interface modale dans Obsidian
+**L'extension envoie l'URL mais rien n'arrive dans Obsidian.**
+Le plugin Obsidian n'est probablement pas actif. Ouvrir Obsidian et vérifier dans les plugins communautaires.
 
-### Installation
+**Je suis offline au moment de la capture. L'URL est perdue ?**
+Non. L'extension met la requête en file d'attente et réessaie automatiquement dès que le plugin est joignable.
 
-1. Cloner ce repo
-2. Copier le dossier `obsidian-plugin/` dans `.obsidian/plugins/reading-manager/`
-3. Activer le plugin dans **Paramètres → Plugins communautaires**
+**Les métadonnées sont incomplètes ou fausses.**
+Certains sites ne servent pas de balises OpenGraph propres. Vous pouvez les corriger manuellement directement dans la note générée.
 
-### Prérequis
-- Obsidian `≥ 1.4.0`
-- Le plugin doit être en mode desktop
+**Ça marche avec LibreWolf ?**
+Oui. LibreWolf est basé sur Firefox et supporte les extensions WebExtensions standard.
 
----
+**Ça marche avec Chrome ?**
+Pas encore. C'est dans la roadmap.
 
-## Extension Firefox
-
-### Fonctionnalités
-- Capture l'URL et le titre de l'onglet actif
-- Envoi vers le plugin Obsidian via requête locale
-- File d'attente offline avec retry automatique (via `alarms`)
-
-### Installation (développement)
-
-1. Ouvrir `about:debugging` dans Firefox
-2. Cliquer **Charger un module complémentaire temporaire**
-3. Sélectionner le dossier `firefox-extension/`
-
-### Installation (production)
-
-> AMO submission en cours — l'extension n'est pas encore publiée.
-
-En attendant, charger manuellement via `about:debugging`.
-
-### Prérequis
-- Firefox `≥ 140.0`
-- Le plugin Obsidian doit tourner en parallèle
-
----
-
-## Workflow complet
-
-```
-Firefox (URL) → Extension → requête HTTP locale → Plugin Obsidian → Note Markdown
-```
-
-1. Sur n'importe quelle page, cliquer l'icône de l'extension
-2. Remplir / confirmer les métadonnées dans le popup
-3. L'entrée apparaît automatiquement dans votre vault Obsidian
-
----
-
-## Stack
-
-| Composant | Techno |
-|---|---|
-| Plugin Obsidian | TypeScript / Obsidian API |
-| Extension Firefox | Vanilla JS / WebExtensions API |
-| Stockage | Markdown + frontmatter YAML |
-| Métadonnées | OpenGraph, oEmbed, Zotero API |
-
+**Mon vault est sur un cloud (iCloud, Dropbox...). Ça pose un problème ?**
+Non. Le plugin écrit directement dans le dossier local du vault, peu importe où il est synchronisé.
 
 ## Licence
 
