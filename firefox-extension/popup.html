@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 340px;
+      font-family: -apple-system, sans-serif;
+      font-size: 13px;
+      padding: 12px;
+      margin: 0;
+      background: #1e1e2e;
+      color: #cdd6f4;
+    }
+    h2 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      color: #cba6f7;
+    }
+    label {
+      display: block;
+      margin-top: 8px;
+      margin-bottom: 3px;
+      color: #a6adc8;
+      font-size: 12px;
+    }
+    input, select, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      background: #313244;
+      border: 1px solid #45475a;
+      color: #cdd6f4;
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 13px;
+    }
+    textarea {
+      height: 60px;
+      resize: vertical;
+    }
+    .row {
+      display: flex;
+      gap: 8px;
+    }
+    .row > div { flex: 1; }
+    button {
+      margin-top: 12px;
+      width: 100%;
+      padding: 8px;
+      background: #cba6f7;
+      color: #1e1e2e;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    button:hover { background: #b4befe; }
+    #status {
+      margin-top: 8px;
+      font-size: 12px;
+      text-align: center;
+      min-height: 16px;
+    }
+    .success { color: #a6e3a1; }
+    .error { color: #f38ba8; }
+    .pending { color: #f9e2af; }
+  </style>
+</head>
+<body>
+  <h2>📚 Reading Manager</h2>
+
+  <label>URL</label>
+  <input type="text" id="url" readonly />
+
+  <label>Titre</label>
+  <input type="text" id="title" />
+
+  <div class="row">
+    <div>
+      <label>Type</label>
+      <select id="type">
+        <option value="article">Article</option>
+        <option value="video">Vidéo</option>
+        <option value="podcast">Podcast</option>
+        <option value="tweet">Tweet/Post</option>
+        <option value="breve">Brève presse</option>
+        <option value="other">Autre</option>
+      </select>
+    </div>
+    <div>
+      <label>Statut</label>
+      <select id="status">
+        <option value="to-read">À lire</option>
+        <option value="reading">En cours</option>
+        <option value="done">Lu</option>
+      </select>
+    </div>
+  </div>
+
+  <label>Tags (séparés par des virgules)</label>
+  <input type="text" id="tags" placeholder="ex: politique, IA, culture" />
+
+  <label>Note rapide</label>
+  <textarea id="note" placeholder="Pourquoi tu sauvegardes ça..."></textarea>
+
+  <button id="save">Sauvegarder dans Obsidian</button>
+  <div id="status"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
