@@ -1,0 +1,9 @@
+{
+  "id": "reading-manager",
+  "name": "Reading Manager",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Gérez votre bibliothèque personnelle de liens, articles, vidéos et publications avec enrichissement automatique de métadonnées et intégration Zotero.",
+  "author": "You",
+  "isDesktopOnly": true
+}
