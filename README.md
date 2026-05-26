@@ -8,6 +8,14 @@ Firefox (URL) → Extension → HTTP local → Plugin Obsidian → Note Markdown
 
 ---
 
+## Screenshots
+
+<img width="536" height="617" alt="image" src="https://github.com/user-attachments/assets/28234d40-1ae2-4289-86e5-fde1cbd47bb5" />
+
+---
+
+<img width="983" height="765" alt="image" src="https://github.com/user-attachments/assets/2338eac2-01cd-4f7e-bc61-4ddeab17bd41" />
+
 ## Ce que ça fait
 
 - Cliquer sur l'icône dans Firefox envoie l'URL courante dans votre vault
